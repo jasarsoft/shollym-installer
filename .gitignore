@@ -6,15 +6,16 @@ output/
 compress/text/low/
 compress/text/high/
 
-compress/srep.exe
-compress/Arc.exe
 compress/arc.ini
-compress/precomp.exe
-compress/sound.pack
-compress/sound/0_sound.afs
-compress/sound/e_sound.afs
-compress/sound/x_sound.afs
-compress/switcher/settings.exe
+
 help/ReadMe.txt
 help/Readme.rtf
-compress/settings.exe
+*.pack
+*.exe
+*.afs
+Serial.txt
+compress/switcher/dat/sound.md5
+compress/switcher/dat/text.md5
+images/WizardImage2.bmp
+images/3_in_1_dvd_cover.jpg
+update/lower_pc/compress/arc.ini
