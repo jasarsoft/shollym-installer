@@ -1,18 +1,15 @@
 ;//--- Patch information ---\\
-#define Name "Shollym™ Patch"
-#define Type "PES6 Standalone Patch"
-#define Year "2016"
-#define Update "Lower PC"
-#define Season "2015/2016"
-#define SizeByte "493523303"
-#define Version "1.0.0.0"
-#define Developer "Shollym™"
-#define Language "English"
-#define Description "Update for lower PC"
-
+#define Name        "Shollym™ Patch Update"
+#define Type        "PES6 Standalone Patch"
+#define Year        "2016"
 #define Link        "https://www.facebook.com/ShollymPatch"
-
-#define Pack00    "update-lower_pc.pack"
+#define Update      "Lower PC"
+#define Season      "2015/2016"
+#define SizeByte    "493523303"
+#define Version     "1.0.0.0"
+#define Developer   "Shollym™"
+#define Language    "English"
+#define Description "Update files for lower PC %nconfiguration."
 
 
 [Setup]
@@ -22,7 +19,7 @@ AppVerName={#Name} {#Season} {#Update}
 AppPublisher={#Developer}
 DefaultDirName={code:GetInstallDir}
 OutputDir=output
-OutputBaseFilename=update-lower_pc
+OutputBaseFilename=update-lowerpc
 SolidCompression=yes
 Compression=lzma2/ultra64
 InternalCompressLevel=ultra64 
@@ -37,12 +34,8 @@ VersionInfoVersion={#Version}
 InfoBeforeFile=help\readme.txt
 Uninstallable=no
 DirExistsWarning=no
-;UninstallLogMode=new
-;UninstallFilesDir={app}\kitserver\GDB\stadiums
 DisableProgramGroupPage=yes
-DisableWelcomePage=yes
 DisableDirPage=yes
-;DisableFinishedPage=yes
 
 
 [Files]
@@ -54,6 +47,7 @@ PatchName={#Name}
 PatchType=Pro Evolution Soccer 6 Patch
 PatchYear={#Year}
 PatchSeason={#Season}
+PatchUpdate={#Update}
 PatchLanguage={#Language}
 PatchDeveloper={#Developer}
 PatchDescription={#Description}
@@ -132,6 +126,7 @@ var ISDoneProgressBarMain:  TNewProgressBar;
 var   LabelInfoName:        TLabel;
       LabelInfoType:        TLabel;
       LabelInfoSeason:      TLabel;
+      LabelInfoUpdate:      TLabel;
       LabelInfoLanguage:    TLabel;
       LabelInfoDeveloper:   TLabel;
       LabelInfoDescription: TLabel;
@@ -139,6 +134,7 @@ var   LabelInfoName:        TLabel;
 var   LabelInfoNameSub:         TLabel;
       LabelInfoTypeSub:         TLabel;
       LabelInfoSeasonSub:       TLabel;
+      LabelInfoUpdateSub:       TLabel;
       LabelInfoLanguageSub:     TLabel;
       LabelInfoDeveloperSub:    TLabel;
       LabelInfoDescriptionSub:  TLabel;
@@ -349,7 +345,7 @@ begin
   MyCancelButton.Caption    := 'Cancel'
  
   
-  //Welcome Title Name
+   //Welcome Title Name
   LabelWelcomeTitleName             := TLabel.Create(WizardForm);
   LabelWelcomeTitleName.Parent      := WizardForm.WelcomePage;  
   LabelWelcomeTitleName.Left        := 200;
@@ -357,9 +353,9 @@ begin
   LabelWelcomeTitleName.Caption     := '{#Name}';
   LabelWelcomeTitleName.Autosize    := True;
   LabelWelcomeTitleName.Font.Name   := 'Segoe UI';
-  LabelWelcomeTitleName.Font.Size   := 18;
+  LabelWelcomeTitleName.Font.Size   := 16;
   LabelWelcomeTitleName.Font.Style  := [fsBold];
-  LabelWelcomeTitleName.Font.Color  :=  clNavy;
+  LabelWelcomeTitleName.Font.Color  :=  clBlue;
   
   //Welcome Title Season
   LabelWelcomeTitleSeason            := TLabel.Create(WizardForm);
@@ -378,12 +374,12 @@ begin
   LabelFinishedTitle.Parent     := WizardForm.FinishedPage;  
   LabelFinishedTitle.Left       := LabelWelcomeTitleName.Left;
   LabelFinishedTitle.Top        := LabelWelcomeTitleName.Top;  
-  LabelFinishedTitle.Caption    := 'COMPLETED';
+  LabelFinishedTitle.Caption    := 'COMPLETED UPDATE';
   LabelFinishedTitle.AutoSize   := True;
   LabelFinishedTitle.Font.Name  := 'Segoe UI';
-  LabelFinishedTitle.Font.Size  := 18;
+  LabelFinishedTitle.Font.Size  := 16;
   LabelFinishedTitle.Font.Style := [fsBold]
-  LabelFinishedTitle.Font.Color := clNavy;
+  LabelFinishedTitle.Font.Color := clBlue;
   
   //Finished Sub Title
   LabelFinishedSubTitle             := TLabel.Create(WizardForm);
@@ -421,7 +417,8 @@ begin
   //LabelFinishedSubText.Font.Style := [fsBold];
   //LabelFinishedSubText.Font.Color := $000000;
 
-  //Bitmap Image EvoWeb
+
+  //Bitmap Image Logo
   BitmapImageLogo           := TBitmapImage.Create(WizardForm);
   BitmapImageLogo.Parent    := WizardForm.InstallingPage;
   BitmapImageLogo.Top       := WizardForm.ProgressGauge.Top + 80;
@@ -436,7 +433,7 @@ end;
 procedure CurPageChanged(CurPageID: Integer);
 begin
   if (CurPageID = wpFinished) and ISDoneError then begin
-    LabelFinishedTitle.Caption  := 'NOT COMPLETED';
+    LabelFinishedTitle.Caption  := 'NOT COMPLETED UPDATE';
     LabelFinishedText.Caption   := ExpandConstant('{cm:FinishedErrorText}');
   end;
 end;
@@ -475,8 +472,8 @@ begin
         if not PrecompInit('',128,0) then break;
         if not FileSearchInit(true) then break;
 
-        if not ShowChangeDiskWindow ('Please Insert Disk To Continue...', ExpandConstant('{src}'), 'update-lower_pc.pack') then break;
-        if not ISArcExtract( 0, 100, ExpandConstant('{src}\update-lower_pc.pack'), ExpandConstant('{app}'), '', false, '144320472947294', ExpandConstant('{tmp}\arc.ini'), ExpandConstant('{app}'), False) then break;        
+        if not ShowChangeDiskWindow ('Please Insert Disk To Continue...', ExpandConstant('{src}'), 'lower_pc.pack') then break;
+        if not ISArcExtract( 0, 100, ExpandConstant('{src}\lower_pc.pack'), ExpandConstant('{app}'), '', false, '144320472947294', ExpandConstant('{tmp}\arc.ini'), ExpandConstant('{app}'), False) then break;        
        
         ISDoneError := False;
       until true;
@@ -530,10 +527,21 @@ begin
   LabelInfoSeason.Font.Style  := [fsBold];
   LabelInfoSeason.Font.Color  := $000000;
 
+  LabelInfoUpdate             := TLabel.Create(WizardForm);
+  LabelInfoUpdate.Parent      := WizardForm.WelcomePage;
+  LabelInfoUpdate.Caption     := 'Update:'
+  LabelInfoUpdate.Top         := 180;
+  LabelInfoUpdate.Left        := 200;
+  LabelInfoUpdate.Autosize    := True;
+  LabelInfoUpdate.Font.Name   := 'Segoe UI';
+  LabelInfoUpdate.Font.Size   := 10;
+  LabelInfoUpdate.Font.Style  := [fsBold];
+  LabelInfoUpdate.Font.Color  := $000000;
+
   LabelInfoLanguage             := TLabel.Create(WizardForm);
   LabelInfoLanguage.Parent      := WizardForm.WelcomePage;
   LabelInfoLanguage.Caption     := 'Language:'
-  LabelInfoLanguage.Top         := 180;
+  LabelInfoLanguage.Top         := 200;
   LabelInfoLanguage.Left        := 200;
   LabelInfoLanguage.Autosize    := True;
   LabelInfoLanguage.Font.Name   := 'Segoe UI';
@@ -544,7 +552,7 @@ begin
   LabelInfoDeveloper             := TLabel.Create(WizardForm);
   LabelInfoDeveloper.Parent      := WizardForm.WelcomePage;
   LabelInfoDeveloper.Caption     := 'Developer:'
-  LabelInfoDeveloper.Top         := 200;
+  LabelInfoDeveloper.Top         := 220;
   LabelInfoDeveloper.Left        := 200;
   LabelInfoDeveloper.Autosize    := True;
   LabelInfoDeveloper.Font.Name   := 'Segoe UI';
@@ -555,7 +563,7 @@ begin
   LabelInfoDescription             := TLabel.Create(WizardForm);
   LabelInfoDescription.Parent      := WizardForm.WelcomePage;
   LabelInfoDescription.Caption     := 'Description:'
-  LabelInfoDescription.Top         := 220;
+  LabelInfoDescription.Top         := 240;
   LabelInfoDescription.Left        := 200;
   LabelInfoDescription.Autosize    := True;
   LabelInfoDescription.Font.Name   := 'Segoe UI';
@@ -596,10 +604,21 @@ begin
   //LabelInfoSeasonSub.Font.Style  := [fsBold];
   //LabelInfoSeasonSub.Font.Color  := $C0C0C0;
 
+  LabelInfoUpdateSub             := TLabel.Create(WizardForm);
+  LabelInfoUpdateSub.Parent      := WizardForm.WelcomePage;
+  LabelInfoUpdateSub.Caption     := ExpandConstant('{cm:PatchUpdate}');
+  LabelInfoUpdateSub.Top         := 180;
+  LabelInfoUpdateSub.Left        := 300;
+  LabelInfoUpdateSub.Autosize    := True;
+  LabelInfoUpdateSub.Font.Name   := 'Segoe UI';
+  LabelInfoUpdateSub.Font.Size   := 10;
+  //LabelInfoUpdateSub.Font.Style  := [fsBold];
+  //LabelInfoUpdateSub.Font.Color  := $C0C0C0;
+
   LabelInfoLanguageSub             := TLabel.Create(WizardForm);
   LabelInfoLanguageSub.Parent      := WizardForm.WelcomePage;
   LabelInfoLanguageSub.Caption     := ExpandConstant('{cm:PatchLanguage}');
-  LabelInfoLanguageSub.Top         := 180;
+  LabelInfoLanguageSub.Top         := 200;
   LabelInfoLanguageSub.Left        := 300;
   LabelInfoLanguageSub.Autosize    := True;
   LabelInfoLanguageSub.Font.Name   := 'Segoe UI';
@@ -610,7 +629,7 @@ begin
   LabelInfoDeveloperSub             := TLabel.Create(WizardForm);
   LabelInfoDeveloperSub.Parent      := WizardForm.WelcomePage;
   LabelInfoDeveloperSub.Caption     := ExpandConstant('{cm:PatchDeveloper}');
-  LabelInfoDeveloperSub.Top         := 200;
+  LabelInfoDeveloperSub.Top         := 220;
   LabelInfoDeveloperSub.Left        := 300;
   LabelInfoDeveloperSub.Autosize    := True;
   LabelInfoDeveloperSub.Font.Name   := 'Segoe UI';
@@ -621,7 +640,7 @@ begin
   LabelInfoDescriptionSub             := TLabel.Create(WizardForm);
   LabelInfoDescriptionSub.Parent      := WizardForm.WelcomePage;
   LabelInfoDescriptionSub.Caption     := ExpandConstant('{cm:PatchDescription}');
-  LabelInfoDescriptionSub.Top         := 220;
+  LabelInfoDescriptionSub.Top         := 240;
   LabelInfoDescriptionSub.Left        := 300;
   LabelInfoDescriptionSub.Autosize    := True;
   LabelInfoDescriptionSub.Font.Name   := 'Segoe UI';
@@ -655,8 +674,7 @@ end;
 
 function InitializeSetup(): Boolean; 
 var
-  iResultCode: Integer;
-  sUnInstallString: string;
+  ErrCode: integer;
 
 begin
   Result := True;
@@ -665,20 +683,22 @@ begin
 	ExtractTemporaryFile('skin.cjstyles');
   LoadSkin(ExpandConstant('{tmp}\skin.cjstyles'), '');
   
-  if not FileExists('update-lower_pc.pack') then begin
-    MsgBox('Setup is not complete, missing "update-lower_pc.pack" archive!' #13#10 'The installation can not be resumed.', mbError, MB_OK);
+  if not FileExists('lower_pc.pack') then begin
+    MsgBox('Setup is not complete, missing "lower_pc.pack" archive!' #13#10 'The installation can not be resumed.', mbError, MB_OK);
     Result := False;
     Exit;
   end;  
   
   if IsWin64 then
     if not RegValueExists(HKEY_LOCAL_MACHINE,'Software\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{3CC58197-47F6-44A5-BDF1-11AF6A00F411}}_is1', 'UninstallString') or not RegValueExists(HKEY_LOCAL_MACHINE,'Software\Wow6432Node\KONAMIPES6\SMPR', 'installdir') then begin
-      MsgBox(ExpandConstant('You do not have currently installed Shollym Multi-Patch 2016!'), mbInformation, MB_OK)
+      MsgBox(ExpandConstant('You do not have currently installed Shollym Multi-Patch 2016!'  #13#10  'Please install Shollym Multi-Patch 2016 first and then try again.'), mbInformation, MB_OK)
+      ShellExec('open', 'https://www.mediafire.com/folder/8f3w4kabk1w3f', '', '', SW_SHOW, ewNoWait, ErrCode);
       Result := False
       end
   else
     if not RegValueExists(HKEY_LOCAL_MACHINE,'Software\Microsoft\Windows\CurrentVersion\Uninstall\{3CC58197-47F6-44A5-BDF1-11AF6A00F411}}_is1', 'UninstallString') or not RegValueExists(HKEY_LOCAL_MACHINE,'Software\KONAMIPES6\SMPR', 'installdir') then begin
-      MsgBox(ExpandConstant('You do not have currently installed Shollym Multi-Patch 2016!'), mbInformation, MB_OK)
+      MsgBox(ExpandConstant('You do not have currently installed Shollym Multi-Patch 2016!'  #13#10  'Please install Shollym Multi-Patch 2016 first and then try again.'), mbInformation, MB_OK)
+      ShellExec('open', 'https://www.mediafire.com/folder/8f3w4kabk1w3f', '', '', SW_SHOW, ewNoWait, ErrCode);
       Result := False
       end;  
 end;
