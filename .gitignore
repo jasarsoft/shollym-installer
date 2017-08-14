@@ -1,5 +1,6 @@
 compress/switcher/kitserver/
 compress/switcher/switcher/
+update/extra_files/compress/data/
 help/
 output/
 
@@ -18,4 +19,3 @@ compress/switcher/dat/sound.md5
 compress/switcher/dat/text.md5
 images/WizardImage2.bmp
 images/3_in_1_dvd_cover.jpg
-update/lower_pc/compress/arc.ini
