@@ -418,7 +418,7 @@ begin
   //LabelFinishedSubText.Font.Style := [fsBold];
   //LabelFinishedSubText.Font.Color := $000000;
 
-  //Bitmap Image EvoWeb
+  //Bitmap Image Logo
   BitmapImageLogo           := TBitmapImage.Create(WizardForm);
   BitmapImageLogo.Parent    := WizardForm.InstallingPage;
   BitmapImageLogo.Top       := WizardForm.ProgressGauge.Top + 80;
