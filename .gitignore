@@ -1,21 +1,13 @@
-compress/switcher/kitserver/
-compress/switcher/switcher/
-update/extra_files/compress/data/
-help/
-output/
 
-compress/text/low/
-compress/text/high/
-
-compress/arc.ini
-
-help/ReadMe.txt
-help/Readme.rtf
 *.pack
 *.exe
 *.afs
+arc.ini
 Serial.txt
+help/
 compress/switcher/dat/sound.md5
 compress/switcher/dat/text.md5
+compress/switcher/kitserver/
+compress/switcher/switcher/
 images/WizardImage2.bmp
 images/3_in_1_dvd_cover.jpg
