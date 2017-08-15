@@ -1,5 +1,5 @@
 ;//--- Patch information ---\\
-#define Name        "Shollym™ Patch"
+#define Name        "Shollym™ Multi-Patch"
 #define Type        "PES6 Standalone Patch"
 #define Year        "2016"
 #define Season      "2015/2016"
@@ -431,9 +431,9 @@ begin
   LabelWelcomeTitleName.Caption     := '{#Name}';
   LabelWelcomeTitleName.Autosize    := True;
   LabelWelcomeTitleName.Font.Name   := 'Segoe UI';
-  LabelWelcomeTitleName.Font.Size   := 24;
+  LabelWelcomeTitleName.Font.Size   := 18;
   LabelWelcomeTitleName.Font.Style  := [fsBold];
-  LabelWelcomeTitleName.Font.Color  :=  $008CFF;
+  LabelWelcomeTitleName.Font.Color  :=  clBlue;
   
   //Welcome Title Season
   LabelWelcomeTitleSeason            := TLabel.Create(WizardForm);
@@ -445,19 +445,19 @@ begin
   LabelWelcomeTitleSeason.Font.Name  := 'Segoe UI';
   LabelWelcomeTitleSeason.Font.Size  := 16;
   LabelWelcomeTitleSeason.Font.Style := [fsBold];
-  LabelWelcomeTitleSeason.Font.Color := $C0C0C0;
+  LabelWelcomeTitleSeason.Font.Color := clGray;
   
   //Finished Title
   LabelFinishedTitle            := TLabel.Create(WizardForm);
   LabelFinishedTitle.Parent     := WizardForm.FinishedPage;  
   LabelFinishedTitle.Left       := LabelWelcomeTitleName.Left;
   LabelFinishedTitle.Top        := LabelWelcomeTitleName.Top;  
-  LabelFinishedTitle.Caption    := 'COMPLETED';
+  LabelFinishedTitle.Caption    := 'COMPLETED INSTALL';
   LabelFinishedTitle.AutoSize   := True;
   LabelFinishedTitle.Font.Name  := 'Segoe UI';
-  LabelFinishedTitle.Font.Size  := 24;
+  LabelFinishedTitle.Font.Size  := 18;
   LabelFinishedTitle.Font.Style := [fsBold]
-  LabelFinishedTitle.Font.Color := $008CFF;
+  LabelFinishedTitle.Font.Color := clGreen;
   
   //Finished Sub Title
   LabelFinishedSubTitle             := TLabel.Create(WizardForm);
@@ -469,7 +469,7 @@ begin
   LabelFinishedSubTitle.Font.Name   := 'Segoe UI';
   LabelFinishedSubTitle.Font.Size   := 16;
   LabelFinishedSubTitle.Font.Style  := [fsBold];
-  LabelFinishedSubTitle.Font.Color  := $C0C0C0;
+  LabelFinishedSubTitle.Font.Color  := clGray;
   
   //Finished Text
   LabelFinishedText             := TLabel.Create(WizardForm);
@@ -510,7 +510,8 @@ end;
 procedure CurPageChanged(CurPageID: Integer);
 begin
   if (CurPageID = wpFinished) and ISDoneError then begin
-    LabelFinishedTitle.Caption  := 'NOT COMPLETED';
+    LabelFinishedTitle.Caption  := 'NOT COMPLETED INSTALL';
+    LabelFinishedTitle.Font.Color := clRed;
     LabelFinishedText.Caption   := ExpandConstant('{cm:FinishedErrorText}');
   end;
 end;
@@ -960,10 +961,6 @@ end;
 
 
 function InitializeSetup(): Boolean; 
-var
-  V: Integer;
-  iResultCode: Integer;
-  sUnInstallString: string;
 
 begin
   Result := True;
@@ -995,7 +992,7 @@ begin
   end;
   
   if RegValueExists(HKEY_LOCAL_MACHINE,'Software\Microsoft\Windows\CurrentVersion\Uninstall\{3CC58197-47F6-44A5-BDF1-11AF6A00F411}}_is1', 'UninstallString') then begin
-    MsgBox(ExpandConstant('Shollym Multi-Patch 2016 is already installed on your computer' #13#10 'Do you want to delete it before the new installation?'), mbInformation, MB_YESNO)
+    MsgBox(ExpandConstant('Shollym Multi-Patch 2016 is already installed on your computer!'), mbInformation, MB_YESNO)
   end;  
 end;
 
